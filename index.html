@@ -205,7 +205,7 @@
             <h2 class="text-3xl font-bold text-center text-white mb-12">Оставь заявку</h2>
             
             <div class="max-w-2xl mx-auto bg-gray-800 p-6 md:p-8 rounded-lg shadow-sm border border-gray-700">
-                <form id="https://formspree.io/f/mpwlqkya" method="POST" class="space-y-6">
+                <form action="https://formspree.io/f/mpwlqkya" method="POST" class="space-y-6">
                     <div>
                         <label for="role" class="block text-gray-300 font-medium mb-2">Роль</label>
                         <select id="role" name="role" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus focus:outline-none">
@@ -292,56 +292,37 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Form submission
-        const applicationForm = document.getElementById('application-form');
+        const applicationForm = document.querySelector('form'); // или document.querySelector('form[action*="formspree"]')
         const successMessage = document.getElementById('success-message');
-        
-        applicationForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Here you would typically send the form data to your server
-            // For demo purposes, we'll just show the success message
-            applicationForm.reset();
-            successMessage.classList.remove('hidden');
-            
-            // Scroll to success message
-            successMessage.scrollIntoView({ behavior: 'smooth' });
-            
-            // Hide success message after 5 seconds
-            setTimeout(() => {
-                successMessage.classList.add('hidden');
-            }, 5000);
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
+
+        applicationForm.addEventListener('submit', function (e) {
+            e.preventDefault(); // Не даём форме уйти с обычной отправкой
+
+            const formData = new FormData(applicationForm);
+
+            fetch(applicationForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
                 }
+            }).then(response => {
+                if (response.ok) {
+                    applicationForm.reset();
+                    successMessage.classList.remove('hidden');
+                    successMessage.scrollIntoView({ behavior: 'smooth' });
+
+                    setTimeout(() => {
+                        successMessage.classList.add('hidden');
+                    }, 5000);
+                } else {
+                    alert('Что-то пошло не так. Попробуйте снова.');
+                }
+            }).catch(() => {
+                alert('Ошибка сети. Попробуйте позже.');
             });
         });
     </script>
+
 <!-- <p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=LuvLove/zefirit" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body> -->
 </html>
