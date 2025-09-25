@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zefir-IT - Связь талантов с возможностями</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        },
+                        accent: '#93c5fd',
+                    },
+                    borderRadius: {
+                        'xl': '1rem',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+        }
+        
+        .circle-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: linear-gradient(145deg, #ffffff, #e6e6e6);
+            z-index: -1;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        }
+        
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .role-card {
+            transition: all 0.3s ease;
+        }
+        
+        .antique-bg {
+            background-color: #f5f0e6;
+        }
+        
+        .input-focus:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+        
+        .section-padding {
+            padding: 5rem 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+            <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="zefir-it.jpg" alt="Zefir-IT" class="h-8 w-auto mr-3"> 
+                <span class="text-blue-600 font-bold text-xl md:text-2xl">Zefir-IT</span>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Главная</a>
+                <a href="#about" class="text-gray-600 hover:text-blue-600 transition duration-300">О нас</a>
+                <a href="index.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Услуги</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-600 transition duration-300">Оставить заявку</a>
+                <a href="index_work.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Трудоустройство</a>
+            </nav>
+            <button id="menuBtn" class="md:hidden text-gray-600 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#about" class="py-2 text-gray-600 hover:text-blue-600">О нас</a>
+                <a href="#services" class="py-2 text-gray-600 hover:text-blue-600">Услуги</a>
+                <a href="#contact" class="py-2 text-gray-600 hover:text-blue-600">Оставить заявку</a>
+                <a href="/index.html" class="py-2 text-gray-600 hover:text-blue-600">Трудоустройство</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 md:py-24 bg-gradient-to-r from-primary-100 to-primary-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-3xl md:text-5xl font-bold text-gray-800 mb-6">Связываем таланты с возможностями</h1>
+                <p class="text-lg md:text-xl text-gray-600 mb-8">
+                    Мы помогаем молодым программистам, студентам и школьникам зарабатывать, 
+                    выполняя интересные проекты, одновременно нарабатывая портфолио и опыт.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#roles" class="bg-primary-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-primary-700 transition">Узнать больше</a>
+                    <a href="#contact" class="border border-primary-600 text-primary-600 px-6 py-3 rounded-lg font-medium hover:bg-primary-50 transition">Оставить заявку</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-white mb-12">Кто мы?</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-users text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Наша команда</h3>
+                    <p class="text-gray-700">
+                        Мы - сплочённая команда профессионалов, объединяющая менеджеров и программистов для создания ценности.
+                    </p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-lightbulb text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Наша миссия</h3>
+                    <p class="text-gray-600">
+                        Предоставить возможность молодым специалистам зарабатывать, развиваться и нарабатывать портфолио параллельно с учёбой.
+                    </p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-handshake text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Наши ценности</h3>
+                    <p class="text-gray-600">
+                        Гибкость, развитие, взаимовыгодное сотрудничество. Можно совмещать с учёбой или основной работой.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roles Section -->
+    <section id="roles" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Выбери свою роль</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Manager Card -->
+                <div class="role-card bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-headset text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Менеджер</h3>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        Ищете заказы, общаетесь с клиентами, помогаете согласовать требования. Отличная возможность набить руку в продажах и переговорах.
+                    </p>
+                    <div class="mb-4">
+                        <h4 class="font-semibold mb-2">Основные задачи:</h4>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li>Поиск и привлечение клиентов</li>
+                            <li>Ведение переговоров</li>
+                            <li>Согласование требований</li>
+                            <li>Контроль выполнения проектов</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-100 p-3 rounded">
+                        <span class="font-medium">Доход:</span> <span class="text-gray-600">Процент с каждого успешного заказа</span>
+                    </div>
+                    <a href="#contact" class="mt-4 inline-block bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Присоединиться</a>
+                </div>
+                
+                <!-- Programmer Card -->
+                <div class="role-card bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-code text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Программист</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Получаете заказы и выполняете их исходя из своих умений и желаний. Отличный способ заработать и пополнить портфолио реальными проектами.
+                    </p>
+                    <div class="mb-4">
+                        <h4 class="font-semibold mb-2">Основные задачи:</h4>
+                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                            <li>Выполнение технических заданий</li>
+                            <li>Разработка программного обеспечения</li>
+                            <li>Тестирование и отладка</li>
+                            <li>Сдача проекта клиенту</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-100 p-3 rounded">
+                        <span class="font-medium">Доход:</span> <span class="text-gray-600">Фиксированная сумма за проект или почасовая оплата</span>
+                    </div>
+                    <a href="#contact" class="mt-4 inline-block bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition">Присоединиться</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-white mb-12">Оставь заявку</h2>
+            
+            <div class="max-w-2xl mx-auto bg-gray-800 p-6 md:p-8 rounded-lg shadow-sm border border-gray-700">
+                <form action="https://formspree.io/f/mpwlqkya" method="POST" class="space-y-6">
+                    <div>
+                        <label for="role" class="block text-gray-300 font-medium mb-2">Роль</label>
+                        <select id="role" name="role" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus focus:outline-none">
+                            <option value="">Выберите роль</option>
+                            <option value="manager">Менеджер</option>
+                            <option value="programmer">Программист</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="fullname" class="block text-gray-300 font-medium mb-2">ФИО</label>
+                        <input type="text" id="fullname" name="fullname" required class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus focus:outline-none" placeholder="Иванов Иван Иванович">
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-gray-300 font-medium mb-2">Email</label>
+                        <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus focus:outline-none" placeholder="example@mail.com">
+                    </div>
+                    
+                    <div>
+                        <label for="phone" class="block text-gray-300 font-medium mb-2">Телефон</label>
+                        <input type="tel" id="phone" name="phone" required class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus focus:outline-none" placeholder="+7 (999) 123-45-67">
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-gray-300 font-medium mb-2">Дополнительная информация</label>
+                        <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus focus:outline-none" placeholder="Ваш опыт, навыки, ожидания..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-blue-700 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-600 transition">Отправить заявку</button>
+                </form>
+                
+                <div id="success-message" class="hidden mt-6 p-4 bg-green-100 text-green-700 rounded-lg">
+                    <i class="fas fa-check-circle mr-2"></i> Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-200 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center">
+                            <span class="text-black font-bold text-xl">IT</span>
+                        </div>
+                        <h3 class="text-xl font-bold">Zefir-IT</h3>
+                    </div>
+                    <p class="text-gray-400">
+                        Связываем таланты с возможностями. Помогаем молодым специалистам развиваться и зарабатывать
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Контакты</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-gray-400"></i>
+                            <a href="tel:+79998561138" class="text-gray-400 hover:text-white transition">+7 999 856 1138</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-gray-400"></i>
+                            <a href="mailto:zef1rchick@yandex.ru" class="text-gray-400 hover:text-white transition">zef1rchick@yandex.ru</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Быстрые ссылки</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">О нас</a></li>
+                        <li><a href="#roles" class="text-gray-400 hover:text-white transition">Возможности</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Оставить заявку</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Zefir-IT Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const applicationForm = document.querySelector('form'); // или document.querySelector('form[action*="formspree"]')
+        const successMessage = document.getElementById('success-message');
+
+        applicationForm.addEventListener('submit', function (e) {
+            e.preventDefault(); // Не даём форме уйти с обычной отправкой
+
+            const formData = new FormData(applicationForm);
+
+            fetch(applicationForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    applicationForm.reset();
+                    successMessage.classList.remove('hidden');
+                    successMessage.scrollIntoView({ behavior: 'smooth' });
+
+                    setTimeout(() => {
+                        successMessage.classList.add('hidden');
+                    }, 5000);
+                } else {
+                    alert('Что-то пошло не так. Попробуйте снова.');
+                }
+            }).catch(() => {
+                alert('Ошибка сети. Попробуйте позже.');
+            });
+        });
+    </script>
+</html>
