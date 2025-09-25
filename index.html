@@ -3,36 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zefir-IT - Связь талантов с возможностями</title>
+    <title>Zefir-IT - IT решения для вашего бизнеса</title>
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                        }
+                        primary: '#3b82f6',
+                        accent: '#93c5fd',
+                    },
+                    borderRadius: {
+                        'xl': '1rem',
                     }
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
         
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
         }
         
         .hero-gradient {
             background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+        }
+        
+        .circle-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: linear-gradient(145deg, #ffffff, #e6e6e6);
+            z-index: -1;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
         }
         
         .role-card:hover {
@@ -52,200 +75,230 @@
             border-color: #3b82f6;
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
         }
+        
+        .section-padding {
+            padding: 5rem 0;
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-    <!-- Header -->
-    <header class="bg-white shadow-sm">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <div class="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center">
-                    <span class="text-white font-bold text-xl">IT</span>
-                </div>
-                <h1 class="text-xl font-bold text-gray-800">Zefir-IT</h1>
+<body class="bg-gray-50">
+
+        <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="zefir-it.jpg" alt="Zefir-IT" class="h-8 w-auto mr-3"> 
+                <span class="text-blue-600 font-bold text-xl md:text-2xl">Zefir-IT</span>
             </div>
             <nav class="hidden md:flex space-x-8">
-                <a href="#about" class="text-gray-600 hover:text-primary-600 transition">О нас</a>
-                <a href="#roles" class="text-gray-600 hover:text-primary-600 transition">Возможности</a>
-                <a href="#contact" class="text-gray-600 hover:text-primary-600 transition">Контакты</a>
+                <a href="index.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Главная</a>
+                <a href="#about" class="text-gray-600 hover:text-blue-600 transition duration-300">О нас</a>
+                <a href="#services" class="text-gray-600 hover:text-blue-600 transition duration-300">Услуги</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-600 transition duration-300">Оставить заявку</a>
+                <a href="index_work.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Трудоустройство</a>
             </nav>
-            <button class="md:hidden text-gray-700" id="mobile-menu-button">
-                <i class="fas fa-bars text-2xl"></i>
+            <button id="menuBtn" class="md:hidden text-gray-600 focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
             </button>
         </div>
         
-        <!-- Mobile menu -->
-        <div class="md:hidden hidden bg-gray-800 py-2 px-4 shadow-md" id="mobile-menu">
-            <a href="#about" class="block py-2 text-gray-300 hover:text-white transition">О нас</a>
-            <a href="#roles" class="block py-2 text-gray-300 hover:text-white transition">Возможности</a>
-            <a href="#contact" class="block py-2 text-gray-300 hover:text-white transition">Контакты</a>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#about" class="py-2 text-gray-600 hover:text-blue-600">О нас</a>
+                <a href="#services" class="py-2 text-gray-600 hover:text-blue-600">Услуги</a>
+                <a href="#contact" class="py-2 text-gray-600 hover:text-blue-600">Оставить заявку</a>
+                <a href="/index_work.html" class="py-2 text-gray-600 hover:text-blue-600">Трудоустройство</a>
+            </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="py-16 md:py-24 bg-gradient-to-r from-primary-100 to-primary-50">
-        <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto text-center">
-                <h1 class="text-3xl md:text-5xl font-bold text-gray-800 mb-6">Связываем таланты с возможностями</h1>
-                <p class="text-lg md:text-xl text-gray-600 mb-8">
-                    Мы помогаем молодым программистам, студентам и школьникам зарабатывать, 
-                    выполняя интересные проекты, одновременно нарабатывая портфолио и опыт.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#roles" class="bg-primary-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-primary-700 transition">Узнать больше</a>
-                    <a href="#contact" class="border border-primary-600 text-primary-600 px-6 py-3 rounded-lg font-medium hover:bg-primary-50 transition">Оставить заявку</a>
-                </div>
+    <section class="relative overflow-hidden py-24 md:py-32">
+        <div class="circle-bg w-[120vw] h-[120vw] max-w-[800px] max-h-[800px]"></div>
+        <div class="container mx-auto px-4 flex flex-col items-center text-center pt-16">
+            <div class="flex items-center justify-center mb-12">
+                <img src="zefir-it.jpg" alt="Логотип Zefir-IT" class="w-64 h-64 rounded-xl">
             </div>
+            <div >
+                <h1 class="ml-4 text-4xl md:text-6xl font-bold text-gray-800">Zefir-IT</h1>
+            </div>
+            <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mb-16">
+                Мы команда IT-Zefir, создаем качественные IT-решения для ваших задач!
+            </p>
+            <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-xl shadow-lg transition duration-300 mt-4">
+                Оставить заявку
+            </a>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-white mb-12">Кто мы?</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12" data-aos="fade-up">Кто мы?</h2>
             
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                    <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-users text-white text-xl"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <div class="space-y-6" data-aos="fade-right">
+                    <div class="card-hover bg-gray-50 p-6 rounded-xl border border-gray-100">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary rounded-lg p-2 mr-4">
+                                <span class="mdi mdi-code-tags text-white text-2xl"></span>
+                            </div>
+                            <h3 class="text-xl font-semibold">Наша миссия</h3>
+                        </div>
+                        <p class="text-gray-600">
+                            Мы решаем IT-задачи любой сложности: от разработки ботов и сайтов до создания встраиваемых систем и нейросетей.
+                        </p>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Наша команда</h3>
-                    <p class="text-gray-700">
-                        Мы - сплочённая команда профессионалов, объединяющая менеджеров и программистов для создания ценности.
-                    </p>
+                    
+                    <div class="card-hover bg-gray-50 p-6 rounded-xl border border-gray-100">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary rounded-lg p-2 mr-4">
+                                <span class="mdi mdi-rocket-launch text-white text-2xl"></span>
+                            </div>
+                            <h3 class="text-xl font-semibold">Наш подход</h3>
+                        </div>
+                        <p class="text-gray-600">
+                            Работаем быстро, точно в срок и строго по техническому заданию. Ваши задачи - наши решения.
+                        </p>
+                    </div>
                 </div>
                 
-                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                    <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-lightbulb text-white text-xl"></i>
+                <div data-aos="fade-left">
+                    <div class="card-hover bg-gradient-to-br from-accent to-blue-100 p-8 rounded-xl text-gray-800">
+                        <h3 class="text-2xl font-bold mb-4">Наше кредо</h3>
+                        <p class="text-lg mb-6">
+                            <span class="block mb-3">✨ Каждая задача заслуживает качественного решения</span>
+                            <span class="block mb-3">🚀 Скорость выполнения не в ущерб качеству</span>
+                            <span class="block">🤝 Прозрачность и честность на всех этапах</span>
+                        </p>
+                        <div class="bg-white rounded-lg p-4 mt-6">
+                            <p class="text-primary font-semibold">Команда Zefir</p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold mb-3">Наша миссия</h3>
-                    <p class="text-gray-600">
-                        Предоставить возможность молодым специалистам зарабатывать, развиваться и нарабатывать портфолио параллельно с учёбой.
-                    </p>
-                </div>
-                
-                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
-                    <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mb-4">
-                        <i class="fas fa-handshake text-white text-xl"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-3">Наши ценности</h3>
-                    <p class="text-gray-600">
-                        Гибкость, развитие, взаимовыгодное сотрудничество. Можно совмещать с учёбой или основной работой.
-                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Roles Section -->
-    <section id="roles" class="py-16 bg-gray-50">
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Выбери свою роль</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4" data-aos="fade-up">Наши услуги</h2>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12" data-aos="fade-up">
+                Комплексные IT-решения для вашего бизнеса
+            </p>
             
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <!-- Manager Card -->
-                <div class="role-card bg-white p-6 rounded-lg shadow-md border border-gray-200">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-4">
-                            <i class="fas fa-headset text-white text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">Менеджер</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="card-hover bg-white p-8 rounded-xl shadow-sm" data-aos="zoom-in">
+                    <div class="bg-accent rounded-lg p-3 inline-block mb-6">
+                        <span class="mdi mdi-telegram text-primary text-3xl"></span>
                     </div>
-                    <p class="text-gray-700 mb-4">
-                        Ищете заказы, общаетесь с клиентами, помогаете согласовать требования. Отличная возможность набить руку в продажах и переговорах.
+                    <h3 class="text-xl font-semibold mb-4">Разработка Telegram-ботов</h3>
+                    <p class="text-gray-600 mb-6">
+                        Умные боты для автоматизации процессов, онлайн-продаж и поддержки клиентов
                     </p>
-                    <div class="mb-4">
-                        <h4 class="font-semibold mb-2">Основные задачи:</h4>
-                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
-                            <li>Поиск и привлечение клиентов</li>
-                            <li>Ведение переговоров</li>
-                            <li>Согласование требований</li>
-                            <li>Контроль выполнения проектов</li>
-                        </ul>
-                    </div>
-                    <div class="bg-gray-100 p-3 rounded">
-                        <span class="font-medium">Доход:</span> <span class="text-gray-600">Процент с каждого успешного заказа</span>
-                    </div>
-                    <a href="#contact" class="mt-4 inline-block bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Присоединиться</a>
+                    <div class="text-sm text-primary font-medium">Интеграция | Автоматизация | Техподдержка</div>
                 </div>
                 
-                <!-- Programmer Card -->
-                <div class="role-card bg-white p-6 rounded-lg shadow-md border border-gray-200">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
-                            <i class="fas fa-code text-white text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold">Программист</h3>
+                <div class="card-hover bg-white p-8 rounded-xl shadow-sm" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="bg-accent rounded-lg p-3 inline-block mb-6">
+                        <span class="mdi mdi-web text-primary text-3xl"></span>
                     </div>
-                    <p class="text-gray-600 mb-4">
-                        Получаете заказы и выполняете их исходя из своих умений и желаний. Отличный способ заработать и пополнить портфолио реальными проектами.
+                    <h3 class="text-xl font-semibold mb-4">Веб-разработка</h3>
+                    <p class="text-gray-600 mb-6">
+                        Сайты и веб-приложения любой сложности с адаптивным дизайном
                     </p>
-                    <div class="mb-4">
-                        <h4 class="font-semibold mb-2">Основные задачи:</h4>
-                        <ul class="list-disc pl-5 text-gray-600 space-y-1">
-                            <li>Выполнение технических заданий</li>
-                            <li>Разработка программного обеспечения</li>
-                            <li>Тестирование и отладка</li>
-                            <li>Сдача проекта клиенту</li>
-                        </ul>
+                    <div class="text-sm text-primary font-medium">Frontend | Backend | Fullstack</div>
+                </div>
+                
+                <div class="card-hover bg-white p-8 rounded-xl shadow-sm" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="bg-accent rounded-lg p-3 inline-block mb-6">
+                        <span class="mdi mdi-chip text-primary text-3xl"></span>
                     </div>
-                    <div class="bg-gray-100 p-3 rounded">
-                        <span class="font-medium">Доход:</span> <span class="text-gray-600">Фиксированная сумма за проект или почасовая оплата</span>
+                    <h3 class="text-xl font-semibold mb-4">Embedded-разработка</h3>
+                    <p class="text-gray-600 mb-6">
+                        Программные решения для встраиваемых систем и IoT-устройств
+                    </p>
+                    <div class="text-sm text-primary font-medium">RTOS | Микроконтроллеры | Драйверы</div>
+                </div>
+                
+                <div class="card-hover bg-white p-8 rounded-xl shadow-sm" data-aos="zoom-in">
+                    <div class="bg-accent rounded-lg p-3 inline-block mb-6">
+                        <span class="mdi mdi-brain text-primary text-3xl"></span>
                     </div>
-                    <a href="#contact" class="mt-4 inline-block bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition">Присоединиться</a>
+                    <h3 class="text-xl font-semibold mb-4">AI и нейросети</h3>
+                    <p class="text-gray-600 mb-6">
+                        Внедрение нейросетей, компьютерное зрение и обработка естественного языка
+                    </p>
+                    <div class="text-sm text-primary font-medium">ML | Computer Vision | NLP</div>
+                </div>
+                
+                <div class="card-hover bg-white p-8 rounded-xl shadow-sm" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="bg-accent rounded-lg p-3 inline-block mb-6">
+                        <span class="mdi mdi-cloud text-primary text-3xl"></span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">DevOps и инфраструктура</h3>
+                    <p class="text-gray-600 mb-6">
+                        Настройка серверов, CI/CD-процессов и систем мониторинга
+                    </p>
+                    <div class="text-sm text-primary font-medium">Docker | Kubernetes | AWS/GCP</div>
+                </div>
+                
+                <div class="card-hover bg-white p-8 rounded-xl shadow-sm" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="bg-accent rounded-lg p-3 inline-block mb-6">
+                        <span class="mdi mdi-phone text-primary text-3xl"></span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Мобильная разработка</h3>
+                    <p class="text-gray-600 mb-6">
+                        Нативные и кросс-платформенные приложения для iOS и Android
+                    </p>
+                    <div class="text-sm text-primary font-medium">Swift | Kotlin | React Native</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Form -->
+    <!-- Contact Section -->
     <section id="contact" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-white mb-12">Оставь заявку</h2>
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4" data-aos="fade-up">Оставить заявку</h2>
+            <p class="text-center text-gray-600 mb-12" data-aos="fade-up">
+                Опишите вашу задачу и мы свяжемся с вами в ближайшее время
+            </p>
             
-            <div class="max-w-2xl mx-auto bg-gray-800 p-6 md:p-8 rounded-lg shadow-sm border border-gray-700">
-                <form action="https://formspree.io/f/mpwlqkya" method="POST" class="space-y-6">
+            <form action="https://formspree.io/f/mpwlqkya" method="POST" class="space-y-6" data-aos="fade-up">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label for="role" class="block text-gray-300 font-medium mb-2">Роль</label>
-                        <select id="role" name="role" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus focus:outline-none">
-                            <option value="">Выберите роль</option>
-                            <option value="manager">Менеджер</option>
-                            <option value="programmer">Программист</option>
-                        </select>
+                        <label for="name" class="block text-gray-700 mb-2">Имя</label>
+                        <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
                     </div>
-                    
                     <div>
-                        <label for="fullname" class="block text-gray-300 font-medium mb-2">ФИО</label>
-                        <input type="text" id="fullname" name="fullname" required class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus focus:outline-none" placeholder="Иванов Иван Иванович">
+                        <label for="email" class="block text-gray-700 mb-2">Email</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
                     </div>
-                    
-                    <div>
-                        <label for="email" class="block text-gray-300 font-medium mb-2">Email</label>
-                        <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus focus:outline-none" placeholder="example@mail.com">
-                    </div>
-                    
-                    <div>
-                        <label for="phone" class="block text-gray-300 font-medium mb-2">Телефон</label>
-                        <input type="tel" id="phone" name="phone" required class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus focus:outline-none" placeholder="+7 (999) 123-45-67">
-                    </div>
-                    
-                    <div>
-                        <label for="message" class="block text-gray-300 font-medium mb-2">Дополнительная информация</label>
-                        <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus focus:outline-none" placeholder="Ваш опыт, навыки, ожидания..."></textarea>
-                    </div>
-                    
-                    <button type="submit" class="w-full bg-blue-700 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-600 transition">Отправить заявку</button>
-                </form>
-                
-                <div id="success-message" class="hidden mt-6 p-4 bg-green-100 text-green-700 rounded-lg">
-                    <i class="fas fa-check-circle mr-2"></i> Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.
                 </div>
-            </div>
+                
+                <div>
+                    <label for="phone" class="block text-gray-700 mb-2">Телефон</label>
+                    <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                </div>
+                
+                <div>
+                    <label for="message" class="block text-gray-700 mb-2">Опишите вашу задачу</label>
+                    <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                </div>
+                
+                <button type="submit" class="w-full bg-primary hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-xl shadow-lg transition duration-300">
+                    Отправить заявку
+                </button>
+            </form>
         </div>
     </section>
 
-    <!-- Footer -->
+        <!-- Footer -->
     <footer class="bg-gray-800 text-gray-200 py-12">
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-3 gap-8">
@@ -257,7 +310,7 @@
                         <h3 class="text-xl font-bold">Zefir-IT</h3>
                     </div>
                     <p class="text-gray-400">
-                        Связываем таланты с возможностями. Помогаем молодым специалистам развиваться и зарабатывать.
+                        IT решения для вашего бизнеса
                     </p>
                 </div>
                 
@@ -292,37 +345,53 @@
     </footer>
 
     <script>
-        const applicationForm = document.querySelector('form'); // или document.querySelector('form[action*="formspree"]')
-        const successMessage = document.getElementById('success-message');
+        AOS.init({
+            duration: 800,
+            once: true
+        });
 
-        applicationForm.addEventListener('submit', function (e) {
-            e.preventDefault(); // Не даём форме уйти с обычной отправкой
-
-            const formData = new FormData(applicationForm);
-
-            fetch(applicationForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    applicationForm.reset();
-                    successMessage.classList.remove('hidden');
-                    successMessage.scrollIntoView({ behavior: 'smooth' });
-
-                    setTimeout(() => {
-                        successMessage.classList.add('hidden');
-                    }, 5000);
-                } else {
-                    alert('Что-то пошло не так. Попробуйте снова.');
-                }
-            }).catch(() => {
-                alert('Ошибка сети. Попробуйте позже.');
-            });
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
     </script>
 
-<!-- <p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=LuvLove/zefirit" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body> -->
+    
+<script>
+    const applicationForm = document.querySelector('form'); // или document.querySelector('form[action*="formspree"]')
+    const successMessage = document.getElementById('success-message');
+
+    applicationForm.addEventListener('submit', function (e) {
+        e.preventDefault(); // Не даём форме уйти с обычной отправкой
+
+        const formData = new FormData(applicationForm);
+
+        fetch(applicationForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                applicationForm.reset();
+                successMessage.classList.remove('hidden');
+                successMessage.scrollIntoView({ behavior: 'smooth' });
+
+                setTimeout(() => {
+                    successMessage.classList.add('hidden');
+                }, 5000);
+            } else {
+                alert('Что-то пошло не так. Попробуйте снова.');
+            }
+        }).catch(() => {
+            alert('Ошибка сети. Попробуйте позже.');
+        });
+    });
+</script>
+
+</body>
 </html>
