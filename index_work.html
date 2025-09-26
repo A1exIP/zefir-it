@@ -334,6 +334,21 @@
         </div>
     </footer>
 
+        <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
     <script>
         const applicationForm = document.querySelector('form'); // или document.querySelector('form[action*="formspree"]')
         const successMessage = document.getElementById('success-message');
