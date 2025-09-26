@@ -6,7 +6,8 @@
     <title>Zefir-IT - Связь талантов с возможностями</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <link rel="icon" href="zefir-it.jpg" type="image/png">
     
     <script>
@@ -78,7 +79,7 @@
         }
         
         .antique-bg {
-            background-color: #f5f0e6;
+            background-color: '#f5f0e6';
         }
         
         .input-focus:focus {
@@ -93,7 +94,7 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-            <!-- Header -->
+    <!-- Header -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center">
@@ -118,9 +119,9 @@
         <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
             <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
                 <a href="#about" class="py-2 text-gray-600 hover:text-blue-600">О нас</a>
-                <a href="#services" class="py-2 text-gray-600 hover:text-blue-600">Услуги</a>
+                <a href="index.html" class="py-2 text-gray-600 hover:text-blue-600">Услуги</a>
                 <a href="#contact" class="py-2 text-gray-600 hover:text-blue-600">Оставить заявку</a>
-                <a href="/index_work.html" class="py-2 text-gray-600 hover:text-blue-600">Трудоустройство</a>
+                <a href="index_work.html" class="py-2 text-gray-600 hover:text-blue-600">Трудоустройство</a>
             </div>
         </div>
     </header>
@@ -145,7 +146,7 @@
     <!-- About Section -->
     <section id="about" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-white mb-12">Кто мы?</h2>
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Кто мы?</h2>
             
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
@@ -245,12 +246,12 @@
     <!-- Contact Form -->
     <section id="contact" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-white mb-12">Оставь заявку</h2>
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Оставь заявку</h2>
             
-            <div class="max-w-2xl mx-auto bg-gray-800 p-6 md:p-8 rounded-lg shadow-sm border border-gray-700">
+            <div class="max-w-2xl mx-auto bg-gray-50 p-6 md:p-8 rounded-lg shadow-sm border border-gray-300">
                 <form action="https://formspree.io/f/mpwlqkya" method="POST" class="space-y-6">
                     <div>
-                        <label for="role" class="block text-gray-300 font-medium mb-2">Роль</label>
+                        <label for="role" class="block text-gray-700 font-medium mb-2">Роль</label>
                         <select id="role" name="role" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus focus:outline-none">
                             <option value="">Выберите роль</option>
                             <option value="manager">Менеджер</option>
@@ -259,22 +260,22 @@
                     </div>
                     
                     <div>
-                        <label for="fullname" class="block text-gray-300 font-medium mb-2">ФИО</label>
+                        <label for="fullname" class="block text-gray-700 font-medium mb-2">ФИО</label>
                         <input type="text" id="fullname" name="fullname" required class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus focus:outline-none" placeholder="Иванов Иван Иванович">
                     </div>
                     
                     <div>
-                        <label for="email" class="block text-gray-300 font-medium mb-2">Email</label>
+                        <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
                         <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus focus:outline-none" placeholder="example@mail.com">
                     </div>
                     
                     <div>
-                        <label for="phone" class="block text-gray-300 font-medium mb-2">Телефон</label>
+                        <label for="phone" class="block text-gray-700 font-medium mb-2">Телефон</label>
                         <input type="tel" id="phone" name="phone" required class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus focus:outline-none" placeholder="+7 (999) 123-45-67">
                     </div>
                     
                     <div>
-                        <label for="message" class="block text-gray-300 font-medium mb-2">Дополнительная информация</label>
+                        <label for="message" class="block text-gray-700 font-medium mb-2">Дополнительная информация</label>
                         <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg input-focus focus:outline-none" placeholder="Ваш опыт, навыки, ожидания..."></textarea>
                     </div>
                     
@@ -295,7 +296,7 @@
                 <div>
                     <div class="flex items-center space-x-2 mb-4">
                         <div class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center">
-                            <span class="text-black font-bold text-xl">IT</span>
+                            <span class="text-white font-bold text-xl">IT</span>
                         </div>
                         <h3 class="text-xl font-bold">Zefir-IT</h3>
                     </div>
@@ -334,51 +335,79 @@
         </div>
     </footer>
 
-        <script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Инициализация AOS
         AOS.init({
             duration: 800,
             once: true
         });
 
-        // Mobile menu toggle
-        const menuBtn = document.getElementById('menuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        // Mobile menu toggle - исправленный код
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                    
+                    // Меняем иконку меню при открытии/закрытии
+                    const menuIcon = menuBtn.querySelector('svg');
+                    if (mobileMenu.classList.contains('hidden')) {
+                        menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+                    } else {
+                        menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
+                    }
+                });
+                
+                // Закрываем меню при клике на ссылку
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                        const menuIcon = menuBtn.querySelector('svg');
+                        menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />';
+                    });
+                });
+            }
+        });
+
+        // Обработка формы
+        document.addEventListener('DOMContentLoaded', function() {
+            const applicationForm = document.querySelector('form');
+            const successMessage = document.getElementById('success-message');
+
+            if (applicationForm && successMessage) {
+                applicationForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    const formData = new FormData(applicationForm);
+
+                    fetch(applicationForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    }).then(response => {
+                        if (response.ok) {
+                            applicationForm.reset();
+                            successMessage.classList.remove('hidden');
+                            successMessage.scrollIntoView({ behavior: 'smooth' });
+
+                            setTimeout(() => {
+                                successMessage.classList.add('hidden');
+                            }, 5000);
+                        } else {
+                            alert('Что-то пошло не так. Попробуйте снова.');
+                        }
+                    }).catch(() => {
+                        alert('Ошибка сети. Попробуйте позже.');
+                    });
+                });
+            }
         });
     </script>
-
-    <script>
-        const applicationForm = document.querySelector('form'); // или document.querySelector('form[action*="formspree"]')
-        const successMessage = document.getElementById('success-message');
-
-        applicationForm.addEventListener('submit', function (e) {
-            e.preventDefault(); // Не даём форме уйти с обычной отправкой
-
-            const formData = new FormData(applicationForm);
-
-            fetch(applicationForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    applicationForm.reset();
-                    successMessage.classList.remove('hidden');
-                    successMessage.scrollIntoView({ behavior: 'smooth' });
-
-                    setTimeout(() => {
-                        successMessage.classList.add('hidden');
-                    }, 5000);
-                } else {
-                    alert('Что-то пошло не так. Попробуйте снова.');
-                }
-            }).catch(() => {
-                alert('Ошибка сети. Попробуйте позже.');
-            });
-        });
-    </script>
+</body>
 </html>
